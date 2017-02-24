@@ -1,0 +1,8 @@
+*.suo
+*.so
+*.userprefs
+*.VC.*
+.vs
+Debug
+Release
+packages
