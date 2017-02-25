@@ -63,7 +63,7 @@ In Ubuntu, issuing this command you should be fine (might require admin privileg
    ```
    sudo apt-get install build-essential libx11-dev libxfixes-dev
    ```
-2. Install the latest version of [Mono](http://www.mono-project.com) and the package
+2. Install the latest version of [Mono](http://www.mono-project.com). Then, also install the package
 *mono-complete*
 3. Download sources, download nuget, restore solution and build everything (*pay attention to replace each path in the make line below*)
 
@@ -109,7 +109,7 @@ for both C++ Win32 and C#. Then, build the projects through the IDE
 2. Open Visual Studio, restore solution and build the project **LibGifuser**
     
     **Remark**: if you are building the C++ project LibGifuser with a toolset other than
-    MSVC, you need to pass *user32.lib* and *gdi.lib* to the linker.
+    MSVC, you need to pass *user32.lib* and *gdi32.lib* to the linker.
 3. Build remaining projects
 4. If everything ran without issues, you should see a Release directory containing
 several .dll files. After that, you need to copy Newtonsoft.Json.dll into this Release folder, which can be found at
