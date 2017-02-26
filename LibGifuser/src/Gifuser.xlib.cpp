@@ -94,7 +94,7 @@ captureScreen(ScreenRecord *screenRecord)
         cursorRow = 0;
     }
 
-    uint16_t transparency;
+    uint8_t transparency;
 
     for (row = 0; row < cursorWidth; row++)
     {

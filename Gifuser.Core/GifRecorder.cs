@@ -56,7 +56,6 @@ namespace Gifuser.Core
         {
             GifScreenRecorderData data = (GifScreenRecorderData)(e.Argument);
 			Stopwatch localWatch = new Stopwatch();
-			localWatch.Reset();
 
 			IntPtr screenRecord = IntPtr.Zero;
 
@@ -66,17 +65,20 @@ namespace Gifuser.Core
 
 				while (!_worker.CancellationPending)
 				{
-					localWatch.Start();
+					localWatch.Restart();
 					NativeMethods.captureScreen(screenRecord);
 					localWatch.Stop();
 
-					double elapsedMs = localWatch.Elapsed.TotalMilliseconds;
-					if (elapsedMs >= 1.0)
+					TimeSpan elapsed = localWatch.Elapsed;
+					if (elapsed < data.Delay)
 					{
-						int elapsed = (int)(Math.Max(data.Delay.TotalMilliseconds - elapsedMs, 1));
-						Thread.Sleep(elapsed);
+						double difference = data.Delay.TotalMilliseconds - elapsed.TotalMilliseconds;
+						if (difference >= 1.0)
+						{
+							Thread.Sleep((int)difference);
+						}
 					}
-					
+
 					data.Frames++;
 					_worker.ReportProgress(0, data);
 				}

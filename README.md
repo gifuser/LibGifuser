@@ -75,23 +75,9 @@ In Ubuntu, issuing this command you should be fine (might require admin privileg
    cd LibGifuser
    make CFG=Release XLIB_INC=/usr/include/ XLIB_LIB=/usr/lib/x86_64-linux-gnu/ XFIXES_LIB=/usr/lib/x86_64-linux-gnu/
    cd ..
-   cd Gifuser.Core
-   xbuild Gifuser.Core.csproj /p:Configuration=Release
-   cd ..
-   cd Gifuser.Upload
-   xbuild Gifuser.Upload.csproj /p:Configuration=Release
-   cd ..
-   cd ImgurPlugin
-   xbuild ImgurPlugin.csproj /p:Configuration=Release
-   cd ..
-   cd GiphyPlugin
-   xbuild GiphyPlugin.csproj /p:Configuration=Release
-   cd ..
-   cd GfycatPlugin
-   xbuild GfycatPlugin.csproj /p:Configuration=Release
-   cd ..
+   xbuild LibGifuser.sln /p:Configuration=Release
    ``` 
-4. If everything ran without issues, you should see a Release directory containing
+4. If everything ran without issues (don't care for warnings), you should see a Release directory containing
 several .dll files. After that, you need to copy Newtonsoft.Json.dll into this Release folder, which can be found at
 
    ```
@@ -106,12 +92,13 @@ The preferred way to build these projects is using a recent version of Visual St
 for both C++ Win32 and C#. Then, build the projects through the IDE
 
 1. Download and install a recent version of Visual Studio
-2. Open Visual Studio, restore solution and build the project **LibGifuser**
+2. Download LibGifuser sources, open it inside Visual Studio and restore solution
+3. Build the C++ project LibGifuser
     
-    **Remark**: if you are building the C++ project LibGifuser with a toolset other than
+    **Remark**: if you are building the project with a toolset other than
     MSVC, you need to pass *user32.lib* and *gdi32.lib* to the linker.
-3. Build remaining projects
-4. If everything ran without issues, you should see a Release directory containing
+4. Build remaining projects
+5. If everything ran without issues (don't care for warnings), you should see a Release directory (if you chosen Release configuration) containing
 several .dll files. After that, you need to copy Newtonsoft.Json.dll into this Release folder, which can be found at
 
    ```
