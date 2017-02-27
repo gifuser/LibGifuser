@@ -76,7 +76,12 @@ In Ubuntu, issuing this command you should be fine (might require admin privileg
    make CFG=Release XLIB_INC=/usr/include/ XLIB_LIB=/usr/lib/x86_64-linux-gnu/ XFIXES_LIB=/usr/lib/x86_64-linux-gnu/
    cd ..
    xbuild LibGifuser.sln /p:Configuration=Release
-   ``` 
+   ```   
+   Parameters in the ```make``` line above:
+      * **CGF**: either *Debug* or *Release*
+      * **XLIB_INC**: directory containing X11 include directory
+      * **XLIB_LIB**: directory containing *libX11.so* file
+      * **XFIXES_LIB**: directory containing *libXfixes.so* file
 4. If everything ran without issues (don't care for warnings), you should see a Release directory containing
 several .dll files. After that, you need to copy Newtonsoft.Json.dll into this Release folder, which can be found at
 
