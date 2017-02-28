@@ -56,26 +56,28 @@ namespace Gifuser.Core
         {
             GifScreenRecorderData data = (GifScreenRecorderData)(e.Argument);
 			
-            int delay = (int)(data.Delay.TotalMilliseconds);
-			IntPtr screenRecord = IntPtr.Zero;
+            int sleepDelay = (int)(data.Delay.TotalMilliseconds);
+			ushort gifDelay = ToGifDelay(data.Delay);
+
+            IntPtr screenRecord = IntPtr.Zero;
 
 			try
 			{	
-				screenRecord = NativeMethods.beginScreenRecord(data.FileName, ToGifDelay(data.Delay));
+				screenRecord = NativeMethods.beginScreenRecord(data.FileName, 0);
 
 				while (!_worker.CancellationPending)
 				{
-					NativeMethods.captureScreen(screenRecord);
-
-                    Thread.Sleep(delay);
+                    NativeMethods.captureScreen(screenRecord, gifDelay);
 
 					data.Frames++;
 					_worker.ReportProgress(0, data);
+                    
+                    Thread.Sleep(sleepDelay);
 				}
 			}
 			finally
-			{
-				if (screenRecord != IntPtr.Zero)
+            {
+                if (screenRecord != IntPtr.Zero)
 				{
 					NativeMethods.endScreenRecord(screenRecord);
 				}

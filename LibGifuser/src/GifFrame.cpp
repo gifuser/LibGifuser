@@ -67,6 +67,11 @@ uint16_t GifFrame::getDelay() const
     return _delay;
 }
 
+void GifFrame::setDelay(uint16_t delay)
+{
+	_delay = delay;
+}
+
 const uint8_t* GifFrame::getBuffer() {
 	return (const uint8_t *)_buffer;
 }

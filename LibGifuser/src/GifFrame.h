@@ -24,6 +24,7 @@ public:
     uint16_t getWidth() const;
     uint16_t getHeight() const;
     uint16_t getDelay() const;
+	void setDelay(uint16_t delay);
 
 private:
 

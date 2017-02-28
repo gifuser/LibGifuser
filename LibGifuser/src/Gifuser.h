@@ -27,7 +27,7 @@ beginScreenRecord(const char *fileName, uint16_t delay);
 GIFUSER_API
 void
 GIFUSER_CALLCONV
-captureScreen(ScreenRecord *screenRecord);
+captureScreen(ScreenRecord *screenRecord, uint16_t delay);
 
 GIFUSER_API
 void

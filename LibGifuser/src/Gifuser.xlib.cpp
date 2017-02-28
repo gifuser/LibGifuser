@@ -32,11 +32,13 @@ beginScreenRecord(const char *fileName, uint16_t delay)
 GIFUSER_API
 void
 GIFUSER_CALLCONV
-captureScreen(ScreenRecord *screenRecord)
+captureScreen(ScreenRecord *screenRecord, uint16_t delay)
 {
     GifFile *file = screenRecord->file;
     GifFrame *frame = screenRecord->frame;
     
+    frame->setDelay(delay);
+
     Display *display = XOpenDisplay(NULL);
     int screen = XDefaultScreen(display);
     Window root = XRootWindow(display, screen);
